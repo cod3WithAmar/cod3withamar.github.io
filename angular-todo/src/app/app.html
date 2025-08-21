@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  <span>Angular Todos</span>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="Clear completed" (click)="clearCompleted()" [disabled]="completedCount() === 0">
+    <mat-icon>done_all</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <mat-card class="todo-card">
+    <mat-card-content>
+      <form (ngSubmit)="addTodo()" class="add-form">
+        <mat-form-field appearance="outline" class="input-full">
+          <mat-label>Add a task</mat-label>
+          <input matInput [ngModel]="newTitle()" (ngModelChange)="newTitle.set($event)" name="title" placeholder="e.g., Buy groceries" required>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit">Add</button>
+      </form>
+
+      <mat-divider></mat-divider>
+
+      <mat-list>
+        @if (items().length === 0) {
+          <div class="empty">No tasks yet. Add your first task!</div>
+        } @else {
+          @for (item of items(); track item.id) {
+            <mat-list-item>
+              <mat-checkbox [checked]="item.completed" (change)="toggleTodo(item)"></mat-checkbox>
+              <div class="title" [class.completed]="item.completed">{{ item.title }}</div>
+              <button mat-icon-button color="warn" (click)="removeTodo(item)" aria-label="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          }
+        }
+      </mat-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <div class="counts">
+        <span>{{ activeCount() }} active</span>
+        <span>•</span>
+        <span>{{ completedCount() }} completed</span>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<router-outlet />

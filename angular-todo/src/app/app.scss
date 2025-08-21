@@ -1,0 +1,56 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  box-sizing: border-box;
+  block-size: calc(100vh - 64px);
+  background: linear-gradient(135deg, #f6f7fb 0%, #eef1f7 100%);
+  background-attachment: fixed;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+}
+
+.todo-card {
+  margin-top: 24px;
+  inline-size: min(800px, 100%);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.add-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.input-full {
+  flex: 1 1 auto;
+}
+
+mat-list-item {
+  align-items: center;
+}
+
+.title {
+  flex: 1 1 auto;
+  padding: 0 12px;
+}
+
+.title.completed {
+  text-decoration: line-through;
+  color: rgba(0,0,0,0.45);
+}
+
+.empty {
+  padding: 16px;
+  color: rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+mat-card-actions .counts {
+  display: flex;
+  gap: 8px;
+  color: rgba(0,0,0,0.6);
+}
