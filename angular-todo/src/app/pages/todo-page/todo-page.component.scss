@@ -1,0 +1,77 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 12px 0;
+}
+
+.add-form {
+  margin-bottom: 12px;
+}
+
+.input-field {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.actions .spacer {
+  flex: 1 1 auto;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.todo-title {
+  flex: 1 1 auto;
+  cursor: pointer;
+}
+
+.todo-title.completed {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.empty mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
