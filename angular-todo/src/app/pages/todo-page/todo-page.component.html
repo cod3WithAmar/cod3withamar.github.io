@@ -1,0 +1,57 @@
+<div class="page">
+  <mat-card class="container">
+    <h1 class="title">Tasks</h1>
+
+    <form (ngSubmit)="addTodo()" class="add-form">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Add a task</mat-label>
+        <input matInput placeholder="e.g. Buy groceries" [formControl]="newTodo" (keydown.enter)="addTodo()">
+        <button mat-icon-button matSuffix type="button" aria-label="Add" (click)="addTodo()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+
+    <div class="actions">
+      <mat-button-toggle-group [formControl]="filter" appearance="legacy">
+        <mat-button-toggle value="all">All</mat-button-toggle>
+        <mat-button-toggle value="active">Active</mat-button-toggle>
+        <mat-button-toggle value="completed">Completed</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <div class="spacer"></div>
+
+      <button mat-stroked-button color="primary" (click)="toggleAll(true)" [disabled]="(allCompleted$ | async) === true">
+        <mat-icon>check_circle</mat-icon>
+        Mark all done
+      </button>
+      <button mat-stroked-button color="warn" (click)="clearCompleted()" [disabled]="!(hasCompleted$ | async)">
+        <mat-icon>delete_sweep</mat-icon>
+        Clear completed
+      </button>
+    </div>
+
+    <mat-list *ngIf="(filteredTodos$ | async) as todos; else empty">
+      <mat-list-item *ngFor="let todo of todos; trackBy: trackById">
+        <mat-checkbox [checked]="todo.completed" (change)="toggle(todo)"></mat-checkbox>
+        <div class="todo-title" [class.completed]="todo.completed" (click)="toggle(todo)">{{ todo.title }}</div>
+        <span class="item-actions">
+          <button mat-icon-button color="warn" aria-label="Remove" (click)="remove(todo)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </span>
+      </mat-list-item>
+    </mat-list>
+
+    <ng-template #empty>
+      <div class="empty">
+        <mat-icon>checklist_rtl</mat-icon>
+        <p>No tasks yet. Add your first task above.</p>
+      </div>
+    </ng-template>
+
+    <div class="footer">
+      <span>{{ (remainingCount$ | async) ?? 0 }} items left</span>
+    </div>
+  </mat-card>
+</div>
